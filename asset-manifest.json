@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/test-geo/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/test-geo/static/js/main.b6ff666d.chunk.js",
+    "main.js.map": "/test-geo/static/js/main.b6ff666d.chunk.js.map",
+    "runtime-main.js": "/test-geo/static/js/runtime-main.fee6e4e2.js",
+    "runtime-main.js.map": "/test-geo/static/js/runtime-main.fee6e4e2.js.map",
+    "static/js/2.7076a5b7.chunk.js": "/test-geo/static/js/2.7076a5b7.chunk.js",
+    "static/js/2.7076a5b7.chunk.js.map": "/test-geo/static/js/2.7076a5b7.chunk.js.map",
+    "static/js/3.a4b99168.chunk.js": "/test-geo/static/js/3.a4b99168.chunk.js",
+    "static/js/3.a4b99168.chunk.js.map": "/test-geo/static/js/3.a4b99168.chunk.js.map",
+    "index.html": "/test-geo/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/test-geo/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.7076a5b7.chunk.js.LICENSE.txt": "/test-geo/static/js/2.7076a5b7.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/test-geo/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fee6e4e2.js",
+    "static/js/2.7076a5b7.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.b6ff666d.chunk.js"
+  ]
+}

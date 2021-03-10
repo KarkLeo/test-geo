@@ -6,24 +6,19 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya2xlbyIsImEiOiJja2xxbmJjNmgxZHVzMm9tc2Vja3FzNmJmIn0.oMIEudxUzM7cbbOj2bybpw';
 
-interface  MapProps {
-    lng: number,
-    lat: number,
-    track: number[][]
-}
-const Map = ({lng, lat, track}: MapProps) => {
-    const mapContainer = useRef<null | HTMLDivElement>(null);
+const Map = ({lng, lat, track}) => {
+    const mapContainer = useRef(null);
 
     const [zoom, setZoom] = useState(12);
 
-
-    const [mapLink, setMapLink] = useState<any>(null)
+    const [isLoadMap, setIsLoadMap] = useState(false)
+    const [mapLink, setMapLink] = useState(null)
 
 
     useEffect(() => {
-        if (mapLink) {
-
-            mapLink?.getSource('route').setData( {
+        if (isLoadMap && mapLink) {
+            if(mapLink.getSource('route'))
+            mapLink.getSource('route').setData( {
                 'type': 'Feature',
                 'properties': {},
                 'geometry': {
@@ -31,11 +26,13 @@ const Map = ({lng, lat, track}: MapProps) => {
                     'coordinates': track
                 }
             });
+            mapLink.setCenter(track[track.length -1])
         }
     }, [track])
 
+
     useEffect(() => {
-        let cont = mapContainer.current as string | HTMLElement
+        let cont = mapContainer.current
 
         const map = new mapboxgl.Map({
             container:  cont,
@@ -43,8 +40,6 @@ const Map = ({lng, lat, track}: MapProps) => {
             center: [lng, lat],
             zoom: zoom
         });
-
-        setMapLink( map)
 
         map.on('load', function () {
             map.addSource('route', {
@@ -58,6 +53,7 @@ const Map = ({lng, lat, track}: MapProps) => {
                     }
                 }
             });
+
             map.addLayer({
                 'id': 'route',
                 'type': 'line',
@@ -71,6 +67,8 @@ const Map = ({lng, lat, track}: MapProps) => {
                     'line-width': 8
                 }
             });
+            setIsLoadMap(true)
+            setMapLink(map)
         });
         return () => map.remove();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -90,14 +88,12 @@ const Map = ({lng, lat, track}: MapProps) => {
 
 function App() {
 
-  const [pos, setPos] = useState<null | GeolocationPosition>(null)
-    const [track, setTrack] = useState<number[][]>([])
+  const [pos, setPos] = useState(null)
+    const [track, setTrack] = useState([])
     const [lng, setLng] = useState(-70.9);
     const [lat, setLat] = useState(42.35);
 
 
-    console.log(pos)
-    console.log(track)
 
   useEffect(  () => {
     const getPosition = async ()=>  {
